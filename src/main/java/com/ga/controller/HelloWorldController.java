@@ -10,7 +10,7 @@ public class HelloWorldController {
 	
 	@GetMapping("/hello")
 	public String hello() {
-		return "Hello World!!";
+		return "Hello, this is a Spotify Clone!!";
 	}
 
 }
