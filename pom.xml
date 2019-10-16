@@ -65,6 +65,10 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.1-901-1.jdbc4</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 774c5b35dc18cc5264f1b5966749d2e887e35650
 	</dependencies>
 
 	<build>
