@@ -11,5 +11,12 @@ C:/Users/Todd S/Desktop/spotify-clone/Spring-Spotify-Clone/src/main/resources/hi
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/mytest</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="postgres@localhost" uuid="cfadcc5f-62d6-4677-9661-b71f13ef927d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>yessir</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+    </data-source>
   </component>
 </project>

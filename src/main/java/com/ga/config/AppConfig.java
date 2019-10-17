@@ -35,7 +35,9 @@ public class AppConfig {
         BasicDataSource dataSource = new BasicDataSource();
 
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/ga");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/spotifylab");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("Callofduty1");
 
         return dataSource;
     }
@@ -45,7 +47,7 @@ public class AppConfig {
 
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         hibernateProperties.setProperty("hibernate.current_session_context_class", "thread");
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create"); // create-drop update
+//        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create"); // create-drop update
         hibernateProperties.setProperty("hibernate.show_sql", "true");
 
         return hibernateProperties;

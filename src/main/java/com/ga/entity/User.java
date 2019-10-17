@@ -1,16 +1,12 @@
 package com.ga.entity;
 
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import sun.plugin.util.UserProfile;
 
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -19,7 +15,7 @@ public class User {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private int userId;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -27,9 +23,12 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user_profile_id")
-//    private UserProfile userProfile;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "user_song",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = @JoinColumn(name = "song_id"))
+    private List<Song> songs;
 
     @ManyToOne(cascade = {CascadeType.DETACH,
             CascadeType.MERGE, CascadeType.REFRESH})
@@ -37,11 +36,11 @@ public class User {
     private UserRole userRole;
 
     public User() {}
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -69,9 +68,21 @@ public class User {
 //        this.userProfile = userProfile;
 //    }
 
-    public UserRole getUserRole() { return userRole; }
+//    public UserRole getUserRole() { return userRole; }
+//
+//    public void setUserRole(UserRole userRole) { this.userRole = userRole; }
+    public List<Song> getSongs() { return songs; }
 
-    public void setUserRole(UserRole userRole) { this.userRole = userRole; }
+    public void setSongs(List<Song> songs) { this.songs = songs; }
+
+    public List<Song> addSong(Song song) {
+        if(songs == null)
+            songs = new ArrayList<>();
+
+        songs.add(song);
+
+        return songs;
+    }
 
 
 }
