@@ -29,23 +29,41 @@ public class UserDaoImpl implements UserDao {
 		return user;
 		
 	}
-	
-	public User login(User user) { //can you do this without a new user
+
+	public User login(User user) {
 		User savedUser = null;
-		
+
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.beginTransaction();
-			
-			savedUser = (User)session.createQuery("FROM User u WHERE u.username = '" + 
-				user.getUsername() + "' AND u.password = '" + 
-				user.getPassword() + "'").getSingleResult();
+
+			savedUser = (User) session.createQuery("FROM User u WHERE u.username = '" +
+					user.getUsername() + "' AND u.password = '" +
+					user.getPassword() + "'").getSingleResult();
 		} finally {
 			session.close();
 		}
-		
+
 		return savedUser;
+	}
+	@Override
+	public User getUserByUsername(String username) {
+		User user = null;
+
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+			session.beginTransaction();
+
+			user = (User)session.createQuery("FROM User u WHERE u.username = '" +
+					username + "'").uniqueResult();
+		} finally {
+			session.close();
+		}
+
+		return user;
+	}
 	}
 
 	
-}
+
