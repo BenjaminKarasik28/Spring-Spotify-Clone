@@ -1,11 +1,16 @@
 package com.ga.entity;
 
-import sun.plugin.util.UserProfile;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import javax.persistence.*;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="users")
@@ -22,9 +27,9 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_profile_id")
-    private UserProfile userProfile;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_profile_id")
+//    private UserProfile userProfile;
 
     @ManyToOne(cascade = {CascadeType.DETACH,
             CascadeType.MERGE, CascadeType.REFRESH})
@@ -56,13 +61,13 @@ public class User {
         this.password = password;
     }
 
-    public UserProfile getUserProfile() {
-        return userProfile;
-    }
-
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
-    }
+//    public UserProfile getUserProfile() {
+//        return userProfile;
+//    }
+//
+//    public void setUserProfile(UserProfile userProfile) {
+//        this.userProfile = userProfile;
+//    }
 
     public UserRole getUserRole() { return userRole; }
 
