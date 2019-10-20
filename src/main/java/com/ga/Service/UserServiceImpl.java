@@ -2,15 +2,20 @@ package com.ga.Service;
 
 import java.util.List;
 
-
+import com.ga.config.JwtUtil;
 import com.ga.entity.Song;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ga.dao.UserDao;
 import com.ga.entity.User;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,15 +23,30 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
+    @Autowired
+    JwtUtil jwtUtil;
 
     @Override
-    public User signup(User user) {
-        return userDao.signup(user);
+    public String signup(User user) {
+        if(userDao.signup(user) != null) {
+            UserDetails userDetails = loadUserByUsername(user.getUsername());
+
+            return jwtUtil.generateToken(userDetails);
+        }
+
+        return null;
     }
 
+
     @Override
-    public Integer login(User user) {
-        return userDao.login(user).getUserId();
+    public String login(User user) {
+        if(userDao.login(user) != null) {
+            UserDetails userDetails = loadUserByUsername(user.getUsername());
+
+            return jwtUtil.generateToken(userDetails);
+        }
+
+        return null;
     }
 
 
