@@ -1,8 +1,6 @@
 package com.ga.entity;
 
 
-import sun.plugin.util.UserProfile;
-
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -15,7 +13,7 @@ public class User {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Long userId;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -36,11 +34,11 @@ public class User {
     private UserRole userRole;
 
     public User() {}
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -68,9 +66,11 @@ public class User {
 //        this.userProfile = userProfile;
 //    }
 
-//    public UserRole getUserRole() { return userRole; }
-//
-//    public void setUserRole(UserRole userRole) { this.userRole = userRole; }
+    public UserRole getUserRole() { return userRole; }
+
+    public void setUserRole(UserRole userRole) { this.userRole = userRole; }
+
+
     public List<Song> getSongs() { return songs; }
 
     public void setSongs(List<Song> songs) { this.songs = songs; }

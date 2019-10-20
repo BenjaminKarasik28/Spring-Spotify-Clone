@@ -2,6 +2,7 @@ package com.ga.dao;
 
 
 import com.ga.entity.Song;
+import com.ga.entity.UserRole;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,25 +17,34 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
+	@Autowired
+	UserRoleDao userRoleDao;
+
+	@Override
 	public User signup(User user) {
-		
+		String roleName = user.getUserRole().getName();
+
+		UserRole userRole = userRoleDao.getRole(roleName);
+
 		Session session = sessionFactory.getCurrentSession();
-		
+
 		try {
 			session.beginTransaction();
-			
+
+			user.setUserRole(userRole);
+
 			session.save(user);
-			
+
 			session.getTransaction().commit();
 		} finally {
 			session.close();
 		}
-		
+
 		return user;
-		
 	}
 
+	@Override
 	public User login(User user) {
 		User savedUser = null;
 
