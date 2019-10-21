@@ -43,4 +43,6 @@ public class UserRole {
     public void setUsers(List<User> users) { this.users = users; }
 
     public List<User> getUsers() { return users; }
+
+	
 }

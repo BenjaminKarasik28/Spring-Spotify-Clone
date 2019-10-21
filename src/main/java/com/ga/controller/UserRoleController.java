@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ga.entity.UserRole;
 import com.ga.Service.UserRoleService;
 
+
+
+
 @RestController
 @RequestMapping("/role")
 public class UserRoleController {
 
-    @Autowired
-    UserRoleService userRoleService;
+    
+    private UserRoleService userRoleService;
 
     @GetMapping("/{rolename}")
     public UserRole getRole(@PathVariable String rolename) {
@@ -27,4 +30,11 @@ public class UserRoleController {
     public UserRole createRole(@RequestBody UserRole userRole) {
         return userRoleService.createRole(userRole);
     }
+    @Autowired
+    public void setUserRoleService(UserRoleService userRoleService) {
+    	this.userRoleService = userRoleService;
+    }
+
+
+
 }

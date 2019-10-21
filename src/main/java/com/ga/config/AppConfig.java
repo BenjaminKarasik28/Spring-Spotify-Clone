@@ -35,9 +35,8 @@ public class AppConfig {
         BasicDataSource dataSource = new BasicDataSource();
 
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/spotifylab");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("Callofduty1");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/ga");
+     
 
         return dataSource;
     }

@@ -9,7 +9,7 @@ import com.ga.entity.UserRole;
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
 
-    @Autowired
+    
     UserRoleDao userRoleDao;
 
     @Override
@@ -20,5 +20,9 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public UserRole getRole(String roleName) {
         return userRoleDao.getRole(roleName);
+    }
+    @Autowired
+    public void userRoleServiceImpl(UserRoleDao userRoleDao) {
+    	this.userRoleDao = userRoleDao;
     }
 }
