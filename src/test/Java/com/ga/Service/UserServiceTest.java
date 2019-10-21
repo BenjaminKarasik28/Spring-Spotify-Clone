@@ -1,5 +1,10 @@
 package com.ga.Service;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -11,12 +16,6 @@ import com.ga.config.JwtUtil;
 import com.ga.dao.UserDao;
 import com.ga.entity.User;
 import com.ga.entity.UserRole;
-
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.any;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 public class UserServiceTest {
 
